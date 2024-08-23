@@ -18,8 +18,14 @@ services:
       - 8081:80
     environment:
       - PMA_ARBITRARY=1      
-# volumes:
-#   index_data:
-#     driver: local
-#   backups:
-#     driver: local
+  chroma:
+    image: ghcr.io/chroma-core/chroma:latest
+    volumes:
+      - index_data:/chroma/.chroma/index
+    ports:
+      - 8000:8000
+volumes:
+  index_data:
+    driver: local
+  backups:
+    driver: local
